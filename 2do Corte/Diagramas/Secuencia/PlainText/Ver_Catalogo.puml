@@ -1,0 +1,38 @@
+@startuml
+actor Usuario
+participant "IU_Catalogo" as Interfaz <<CI>>
+participant "ControladorCatalogo" as Controlador <<CC>>
+participant "Producto" as Entidad <<CE>>
+participant "BaseDatos" as BD <<Database>>
+
+Usuario -> Interfaz: Solicita ver catálogo de productos
+activate Interfaz
+Interfaz -> Controlador: solicitarListaProductos()
+activate Controlador
+
+group Carga de Productos [Caso exitoso]
+  Controlador -> Entidad: obtenerTodosProductos()
+  activate Entidad
+  Entidad -> BD: SELECT * FROM productos WHERE disponible = true
+  activate BD
+  BD --> Entidad: ResultSet con datos
+  deactivate BD
+  Entidad --> Controlador: Lista<Producto>
+  deactivate Entidad
+  
+  Controlador -> Controlador: aplicarFiltros(opcionales)
+  Controlador -> Controlador: aplicarPaginacion(limite, offset)
+  
+  Controlador --> Interfaz: Lista<ProductoDTO>
+  deactivate Controlador
+  Interfaz -> Interfaz: renderizarVista(Lista<ProductoDTO>)
+  Interfaz --> Usuario: Muestra catálogo (cards/grid)
+else Error en carga
+  BD --> Entidad: Lanza SQLException
+  Entidad --> Controlador: Propaga error
+  Controlador --> Interfaz: notificarError("Error al cargar")
+  Interfaz --> Usuario: Muestra mensaje de error
+end
+
+deactivate Interfaz
+@enduml

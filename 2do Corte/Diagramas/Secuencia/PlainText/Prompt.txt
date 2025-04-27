@@ -1,0 +1,1 @@
+Necesito para un trabajo de ingenieria con el objetivo de desarrollar un portal web que muestre un catalogo de productos,muestre una seccion informativa y puedas escribir quejas o sugerencias que me realices unos diagramas de secuencia en lenguaje uml con clases controladoras,clases entidades y clases interfaz para el siguiente caso de uso:

@@ -1,0 +1,71 @@
+@startuml
+actor Administrador
+participant "InterfazCatalogoAdmin" as Interfaz <<CI>>
+participant "ControladorCatalogo" as Controlador <<CC>>
+participant "Producto" as Entidad <<CE>>
+participant "BaseDatos" as BD <<Database>>
+
+Administrador -> Interfaz: Abre panel de gestión de catálogo
+activate Interfaz
+Interfaz --> Administrador: Muestra lista de productos (CRUD)
+
+group Añadir Producto [Caso exitoso]
+  Administrador -> Interfaz: Rellena formulario (nombre, precio, imagen)
+  Interfaz -> Controlador: enviarNuevoProducto(datos)
+  activate Controlador
+  Controlador -> Controlador: validaDatos(datos)
+  alt Datos válidos
+    Controlador -> Entidad: crearProducto(datos)
+    activate Entidad
+    Entidad -> BD: INSERT INTO productos (...)
+    activate BD
+    BD --> Entidad: ID generado
+    deactivate BD
+    Entidad --> Controlador: Producto creado
+    deactivate Entidad
+    Controlador -> Interfaz: notificarÉxito("Producto añadido")
+    deactivate Controlador
+    Interfaz --> Administrador: Muestra confirmación
+  else Datos inválidos
+    Controlador -> Interfaz: notificarError("Datos incorrectos")
+    deactivate Controlador
+    Interfaz --> Administrador: Muestra error
+  end
+end
+
+group Editar Producto
+  Administrador -> Interfaz: Selecciona producto y edita campos
+  Interfaz -> Controlador: solicitarEditarProducto(ID, nuevosDatos)
+  activate Controlador
+  Controlador -> Entidad: actualizarProducto(ID, nuevosDatos)
+  activate Entidad
+  Entidad -> BD: UPDATE productos SET ... WHERE ID=?
+  activate BD
+  BD --> Entidad: Registros afectados
+  deactivate BD
+  Entidad --> Controlador: Confirmación
+  deactivate Entidad
+  Controlador -> Interfaz: notificarÉxito("Producto actualizado")
+  deactivate Controlador
+  Interfaz --> Administrador: Muestra cambios
+end
+
+group Eliminar Producto
+  Administrador -> Interfaz: Selecciona producto y confirma eliminación
+  Interfaz -> Controlador: solicitarEliminarProducto(ID)
+  activate Controlador
+  Controlador -> Entidad: eliminarProducto(ID)
+  activate Entidad
+  Entidad -> BD: DELETE FROM productos WHERE ID=?
+  activate BD
+  BD --> Entidad: Registros eliminados
+  deactivate BD
+  Entidad --> Controlador: Confirmación
+  deactivate Entidad
+  Controlador -> Interfaz: notificarÉxito("Producto eliminado")
+  deactivate Controlador
+  Interfaz --> Administrador: Actualiza lista
+end
+
+deactivate Interfaz
+@enduml
