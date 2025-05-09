@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>title</title>
+</head>
+<body>
+    <main class="form__wrapper">
+        <div class="form__box__initial">
+            <h1>Bienvenido</h1>
+            <p>a Frutal Mango Dulce</p>
+            <p>¿Qué deseas ver hoy?</p>
+        </div>
+        <div class="form__box">
+            <form class="form__box__front" id="div1">
+                <h2>Crear Cuenta</h2>
+                <label for="name">Nombre</label>
+                <input type="text" placeholder="Jhon Doe"  class="form__input" id="name">
+                <label for="mail">Usuario   </label>
+                <input type="email" placeholder="Ejemplo@gmail.com"  class="form__input" id="mail">
+                <label for="passw">Contraseña </label>
+                <input type="password" placeholder="*************" minlength="8" class="form__input" id="passw">
+                <label for="passwc">Confirmar Contraseña </label>
+                <input type="password" placeholder="*************" minlength="8" class="form__input" id="passwc">
+                <button  class="form__button">Crear</button>
+                <p></p>
+                <p>¿Ya tienes una cuenta?</p>
+                <button type="button" onclick="cambiar()" class="button1">Iniciar Sesión</button>
+            </form>
+            <form class="form__box__behind" id="div2">
+                <h2>Iniciar Sesión</h2>
+                <label for="mail2">Usuario   </label>
+                <input type="email" placeholder="Ejemplo@gmail.com"  class="form__input" id="mail2">
+                <label for="passw2">Contraseña </label>
+                <input type="password" placeholder="*************" minlength="8" class="form__input" id="passw2">
+                <button class="form__button">Iniciar Sesión</button>
+                <div class="text__wrapper">
+                    <p></p>
+                    <p>¿No tienes una Cuenta?</p>
+                    <p></p>
+                </div>
+                <button type="button" onclick="cambiar2()" class="button2">Creátela</button>
+            </form>
+    </div>
+        <div class="form__box3"></div>
+    </main>
+    <footer>
+        <div class="logo__wrapper">
+            <img src="../../Prototipo/Iconos/Logo.svg" alt="">
+        </div>
+            <a href="#" class="links__wrapper"><p>Sobre Nosotros</p></a>
+            <a href="#" class="links__wrapper"><p>Contactános</p></a>
+            <a href="#" class="links__wrapper"><p>Politica de Seguridad</p></a>
+        
+            <a href="https://www.youtube.com/" class="links__image__wrapper">
+                <img src="../../Prototipo/Iconos/icons8-facebook-64.svg"></a>
+            <a href="https://www.youtube.com/" class="links__image__wrapper">
+                <img src="../../Prototipo/Iconos/icons8-instagram-64.svg"></a>
+            <a href="https://www.youtube.com/" class="links__image__wrapper">
+                <img src="../../Prototipo/Iconos/icons8-twitterx-64.svg"></a>
+    </footer>
+    <script src="script.js"></script>
+    
+</body>
+</html>

@@ -1,0 +1,17 @@
+@startuml LogoutAdmin
+class "AdminMainView" as MainView <<Boundary>> {
+  + mostrarBotónLogout()
+}
+
+class "AuthAdminController" as AuthController <<Controller>> {
+  + cerrarSesión()
+}
+
+class "SesionAdmin" as Sesion <<Entity>> {
+  - admin: Administrador
+  + terminar()
+}
+
+MainView --> AuthController : "solicita logout"
+AuthController --> Sesion : "cierra sesión"
+@enduml

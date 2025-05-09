@@ -1,4 +1,4 @@
-@startuml
+@startuml Leer Seccion Informativa
 actor Usuario
 participant "IU_SeccionInformativa" as Interfaz <<CI>>
 participant "ControladorArticulos" as Controlador <<CC>>

@@ -1,0 +1,20 @@
+@startuml LoginAdministrador
+class "LoginForm" as LoginForm <<CI>> {
+  + ingresarCredenciales()
+  + mostrarError()
+}
+
+class "LoginController" as LoginController <<CC>> {
+  + validarUsuario()
+}
+
+class "Administrador" as Administrador <<CE>> {
+  - id: int
+  - nombre: String
+  - contraseña: String
+  + autenticar()
+}
+
+LoginForm --> LoginController : "envía credenciales"
+LoginController --> Administrador : "valida datos"
+@enduml

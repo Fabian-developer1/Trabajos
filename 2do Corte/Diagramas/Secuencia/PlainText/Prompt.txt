@@ -1,1 +1,5 @@
 Necesito para un trabajo de ingenieria con el objetivo de desarrollar un portal web que muestre un catalogo de productos,muestre una seccion informativa y puedas escribir quejas o sugerencias que me realices unos diagramas de secuencia en lenguaje uml con clases controladoras,clases entidades y clases interfaz para el siguiente caso de uso:
+
+
+
+Ok, mi trabajo investigativo tiene tres capítulos hasta ahora. Necesito ayuda específicamente en el capítulo tres, epígrafe 3.2 Diagramas de clases. Este epígrafe se relaciona con el epígrafe 1.3 Diagrama de Casos de Uso del Sistema del capítulo uno. En el epígrafe 1.3 se presentan los distintos casos de uso del sistema, con sus correspondientes descripciones. En total son 7 casos de uso, para los usuarios: hacer log in en el sistema, crear cuenta en el sistema, acceder al catálogo de frutas, acceder a la sección informativa, enviar una queja/sugerencia y hacer log out en el sistema; y para los administradores: hacer log in el sistema, gestionar el catálogo de frutas, gestionar la sección informativa, gestionar las quejas y sugerencias, gestionar las cuentas de los usuarios y hacer log out.
