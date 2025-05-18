@@ -1,9 +1,10 @@
 body{
     margin: 0;
     padding: 0;
-    background-image: url(../../Prototipo/Imagenes/fondito2.jpg);
+    background-image: url(../../Prototipo/Imagenes/fondito3.png);
     background-repeat: no-repeat;
-    background-size:cover}
+    background-size:cover;
+    font-family: AnonymousPro;}
 main,footer,div,img,input,button,h1,h2,p,button,a,label{
     margin: 0;
     padding: 0;
