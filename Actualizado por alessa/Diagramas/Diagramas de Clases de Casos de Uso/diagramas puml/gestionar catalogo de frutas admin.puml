@@ -1,0 +1,21 @@
+@startuml GestionarCatalogoAdmin
+class "AdminCatalogoView" as AdminView <<Boundary>> {
+  + mostrarOpcionesCRUD()
+}
+
+class "AdminCatalogoController" as AdminController <<Controller>> {
+  + agregarFruta()
+  + editarFruta()
+  + eliminarFruta()
+}
+
+class "Fruta" as Fruta <<Entity>> {
+  - id: int
+  - nombre: String
+  + guardar()
+  + eliminar()
+}
+
+AdminView --> AdminController : "envía operación"
+AdminController --> Fruta : "actualiza DB"
+@enduml

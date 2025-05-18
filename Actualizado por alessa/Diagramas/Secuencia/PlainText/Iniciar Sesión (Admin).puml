@@ -1,0 +1,63 @@
+@startuml
+actor Administrador
+participant "IU_LoginAdmin" as Interfaz <<CI>>
+participant "ControladorAutenticacionAdmin" as Controlador <<CC>>
+participant "UsuarioAdmin" as Entidad <<CE>>
+participant "BaseDatos" as BD <<Database>>
+
+Administrador -> Interfaz: Accede al formulario de login admin
+activate Interfaz
+Interfaz --> Administrador: Muestra formulario (email, contraseña)
+
+group Autenticación exitosa
+  Administrador -> Interfaz: Ingresa credenciales
+  Interfaz -> Controlador: solicitarLoginAdmin(email, contraseña)
+  activate Controlador
+
+  Controlador -> Controlador: validarFormato(email, contraseña)
+  alt Formato válido
+    Controlador -> Entidad: buscarAdminPorEmail(email)
+    activate Entidad
+    Entidad -> BD: SELECT * FROM usuarios WHERE email = ? AND rol = 'admin'
+    activate BD
+    BD --> Entidad: Datos del admin (hash, rol)
+    deactivate BD
+    Entidad --> Controlador: Objeto UsuarioAdmin
+    deactivate Entidad
+
+    Controlador -> Controlador: verificarContraseña(contraseña, hash)
+    alt Contraseña correcta
+      Controlador -> Controlador: generarTokenAdmin()
+      Controlador -> Controlador: registrarIntentoExitoso(email)
+      Controlador --> Interfaz: notificarÉxito(token_admin)
+      deactivate Controlador
+      Interfaz --> Administrador: Redirige al panel de control
+    else Contraseña incorrecta
+      Controlador --> Interfaz: notificarError("Credenciales inválidas")
+      deactivate Controlador
+      Interfaz --> Administrador: Muestra error
+    end
+  else Formato inválido
+    Controlador --> Interfaz: notificarError("Email o contraseña vacíos")
+    deactivate Controlador
+    Interfaz --> Administrador: Resalta campos erróneos
+  end
+end
+
+group Error de autenticación
+  alt Admin no existe
+    BD --> Entidad: ResultSet vacío
+    Entidad --> Controlador: null
+    Controlador --> Interfaz: notificarError("Acceso denegado")
+    Interfaz --> Administrador: Muestra error
+  else Error técnico
+    Entidad -> BD: SELECT ...
+    BD --> Entidad: Lanza SQLException
+    Entidad --> Controlador: Propaga error
+    Controlador --> Interfaz: notificarError("Error en el sistema")
+    Interfaz --> Administrador: Muestra mensaje técnico
+  end
+end
+
+deactivate Interfaz
+@enduml

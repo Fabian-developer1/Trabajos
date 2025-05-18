@@ -1,0 +1,40 @@
+@startuml
+actor Usuario
+participant "IU_QuejasSugerencias" as Interfaz <<CI>>
+participant "ControladorFeedback" as Controlador <<CC>>
+participant "QuejaSugerencia" as Entidad <<CE>>
+participant "BaseDatos" as BD <<Database>>
+
+Usuario -> Interfaz: Accede al formulario de quejas/sugerencias
+activate Interfaz
+Interfaz --> Usuario: Muestra formulario (campos: email, mensaje, adjuntos)
+
+group Envío exitoso
+  Usuario -> Interfaz: Completa y envía formulario
+  Interfaz -> Controlador: enviarFeedback(email, mensaje, adjuntos)
+  activate Controlador
+
+  Controlador -> Controlador: validarDatos(email, mensaje)
+  alt Datos válidos
+    Controlador -> Entidad: crearFeedback(email, mensaje, adjuntos)
+    activate Entidad
+    Entidad -> BD: INSERT INTO feedback (...)
+    activate BD
+    BD --> Entidad: ID_Feedback generado
+    deactivate BD
+    Entidad --> Controlador: Feedback guardado
+    deactivate Entidad
+    
+    Controlador -> Controlador: enviarEmailConfirmacion(email)
+    Controlador --> Interfaz: notificarÉxito()
+    deactivate Controlador
+    Interfaz --> Usuario: Muestra "¡Gracias por tu feedback!"
+  else Datos inválidos
+    Controlador --> Interfaz: notificarError("Campos obligatorios")
+    deactivate Controlador
+    Interfaz --> Usuario: Resalta campos erróneos
+  end
+end
+
+deactivate Interfaz
+@enduml

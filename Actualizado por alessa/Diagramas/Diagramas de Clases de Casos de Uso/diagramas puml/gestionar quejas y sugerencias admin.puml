@@ -1,0 +1,20 @@
+@startuml GestionarQuejasAdmin
+class "AdminQuejasView" as AdminView <<CI>> {
+  + mostrarListaQuejas()
+  + marcarComoResuelta()
+}
+
+class "AdminQuejaController" as AdminController <<CC>> {
+  + listarQuejas()
+  + resolverQueja()
+}
+
+class "Queja" as Queja <<CE>> {
+  - id: int
+  - estado: String
+  + actualizarEstado()
+}
+
+AdminView --> AdminController : "solicita acciones"
+AdminController --> Queja : "modifica DB"
+@enduml

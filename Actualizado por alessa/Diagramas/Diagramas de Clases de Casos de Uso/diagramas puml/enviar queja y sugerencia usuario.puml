@@ -1,0 +1,19 @@
+@startuml EnviarQueja
+class "QuejaForm" as QuejaForm <<Boundary>> {
+  + ingresarQueja()
+  + mostrarConfirmación()
+}
+
+class "QuejaController" as QuejaController <<Controller>> {
+  + procesarQueja()
+}
+
+class "Queja" as Queja <<Entity>> {
+  - id: int
+  - mensaje: String
+  + guardar()
+}
+
+QuejaForm --> QuejaController : "envía queja"
+QuejaController --> Queja : "almacena"
+@enduml
