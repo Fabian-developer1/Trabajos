@@ -1,5 +1,5 @@
 body{
-    background-image: url(../../Prototipo/Imagenes/fondito3.png);
+    background-image: url(../assets/Imagenes/fondito3.png);
     background-repeat: no-repeat;
     background-size:cover;}
 *{
@@ -11,14 +11,14 @@ body{
 @font-face {
     font-family: AnonymousPro;
     font-weight: 800;
-    src: url(../../Prototipo/Fonts/AnonymousPro-Bold.ttf) format(truetype);}
+    src: url(../assets/Fonts/AnonymousPro-Bold.ttf) format(truetype);}
 @font-face {
     font-family: AnonymousPro;
     font-weight: 400;
-    src: url(../../Prototipo/Fonts/AnonymousPro-Regular.ttf) format(truetype);}
+    src: url(../assets/Fonts/AnonymousPro-Regular.ttf) format(truetype);}
 @font-face {
     font-family: FuzzyBubbles;
-    src: url(../../Prototipo/Fonts/FuzzyBubbles-Bold.ttf) format(truetype);}
+    src: url(../assets/Fonts/FuzzyBubbles-Bold.ttf) format(truetype);}
 
 
 /*----Main----*/

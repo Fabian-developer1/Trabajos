@@ -1,19 +1,19 @@
 @font-face {
     font-family: AnonymousPro;
     font-weight: 800;
-    src: url(../../Prototipo/Fonts/AnonymousPro-Bold.ttf) format(truetype);}
+    src: url(../assets/Fonts/AnonymousPro-Bold.ttf) format(truetype);}
 @font-face {
     font-family: AnonymousPro;
     font-weight: 400;
-    src: url(../../Prototipo/Fonts/AnonymousPro-Regular.ttf) format(truetype);}
+    src: url(../assets/Fonts/AnonymousPro-Regular.ttf) format(truetype);}
 @font-face {
     font-family: FuzzyBubbles;
-    src: url(../../Prototipo/Fonts/FuzzyBubbles-Bold.ttf) format(truetype);}
+    src: url(../assets/Fonts/FuzzyBubbles-Bold.ttf) format(truetype);}
 
 body{
     margin: 0;
     padding: 0;
-    background-image: url(../../Prototipo/Imagenes/fondito.jpg);
+    background-image: url(../assets/Imagenes/fondito.jpg);
     background-repeat: no-repeat;
     background-size:cover}
 main,footer,div,img,input,button,h1,h2,p,button,a,label{
